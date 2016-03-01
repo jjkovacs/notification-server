@@ -24,6 +24,9 @@ var publisherCache = {};
 var publisherId = 0;
 
 wss.on("connection", function(ws) {
+  
+  console.log('NEW CONNECTION', ws);
+  
   ws.on('message', handleMessage);
   
   function handleMessage(m) {
