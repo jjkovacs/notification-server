@@ -23,8 +23,12 @@ var subscriberId = 0;
 var publisherCache = {};
 var publisherId = 0;
 
-app.get('/', function(data){
-  console.log('>>>>> GET', data);
+app.get('/', function(req, res){
+  console.log('>>>>> GET REQUEST');
+  
+  res.json({
+    'msg': 'Whoop, there it is.'
+  });
 });
 
 wss.on("connection", function(ws) {
