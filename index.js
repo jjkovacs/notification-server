@@ -33,6 +33,10 @@ app.get('/', function(req, res){
 
 app.get('*', function(req, res) {
   console.log('>>>>> UNKNOWN REQUEST', req);
+  
+  res.json({
+    msg: 'What is this trash youre sending me??'
+  });
 });
 
 app.post('*', function(req, res) {
