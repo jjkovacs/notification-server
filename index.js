@@ -14,13 +14,7 @@ server.listen(port)
 
 console.log("http server listening on %d", port)
 
-var wss = new WebSocketServer({
-  server: server,
-  verifyClient: function(info){
-      console.log('>>>>> client', info);
-      return true;
-    }
-  })
+var wss = new WebSocketServer({ server: server })
 console.log("websocket server created")
 
 var subscriberCache = {};
@@ -29,17 +23,11 @@ var subscriberId = 0;
 var publisherCache = {};
 var publisherId = 0;
 
-wss.on('error', function(error){
-  console.error('>>>>> Error', error);
-});
-
-wss.on('headers', function(headers){
-  console.log('>>>>> headers', headers);
+app.get('/', function(data){
+  console.log('>>>>> GET', data);
 });
 
 wss.on("connection", function(ws) {
-  
-  console.log('NEW CONNECTION', ws);
   
   ws.on('message', handleMessage);
   
