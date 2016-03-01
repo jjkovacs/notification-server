@@ -33,6 +33,8 @@ app.get('/', function(req, res){
 
 wss.on("connection", function(ws) {
   
+  console.log('>>>>> NEW CONNECTION');
+  
   ws.on('message', handleMessage);
   
   function handleMessage(m) {
