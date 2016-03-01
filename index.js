@@ -31,6 +31,14 @@ app.get('/', function(req, res){
   });
 });
 
+app.get('*', function(req, res) {
+  console.log('>>>>> UNKNOWN REQUEST', req);
+});
+
+app.post('*', function(req, res) {
+  console.log('>>>>> UNKNOWN POST', req);
+});
+
 wss.on("connection", function(ws) {
   
   console.log('>>>>> NEW CONNECTION');
