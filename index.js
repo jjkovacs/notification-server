@@ -7,14 +7,15 @@ var AlertPublisher = require('./src/Alert-Publisher');
 var app = express()
 var port = process.env.PORT || 5000
 
-app.use(express.static(__dirname + "/"))
+// app.use(express.static(__dirname + "/"))
 
-var server = http.createServer(app)
-server.listen(port)
+// var server = http.createServer(app)
+// server.listen(port)
 
 console.log("http server listening on %d", port)
 
-var wss = new WebSocketServer({ server: server })
+//var wss = new WebSocketServer({ server: server })
+var wss = new WebSocketServer({ port: port });
 console.log("websocket server created")
 
 var subscriberCache = {};
@@ -23,25 +24,21 @@ var subscriberId = 0;
 var publisherCache = {};
 var publisherId = 0;
 
-app.get('/', function(req, res){
-  console.log('>>>>> GET REQUEST');
+// app.get('/', function(req, res){
+//   console.log('>>>>> GET REQUEST');
   
-  res.json({
-    'msg': 'Whoop, there it is.'
-  });
-});
+//   res.json({
+//     'msg': 'Whoop, there it is.'
+//   });
+// });
 
-app.get('*', function(req, res) {
-  console.log('>>>>> UNKNOWN REQUEST', req);
+// app.get('*', function(req, res) {
+//   console.log('>>>>> UNKNOWN REQUEST', req);
   
-  res.json({
-    msg: 'What is this trash youre sending me??'
-  });
-});
-
-app.post('*', function(req, res) {
-  console.log('>>>>> UNKNOWN POST', req);
-});
+//   res.json({
+//     msg: 'What is this trash youre sending me??'
+//   });
+// });
 
 wss.on("connection", function(ws) {
   
